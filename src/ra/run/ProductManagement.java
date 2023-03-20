@@ -1,6 +1,7 @@
 package ra.run;
 
 import ra.bussinessImp.Product;
+import sun.applet.Main;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,8 +39,10 @@ public class ProductManagement {
                     SortProduct(productArray);
                     break;
                 case 4:
+                    DeleteProduct(productArray);
                     break;
                 case 5:
+                    SearchProduct(productArray);
                     break;
                 case 6:
                     break;
@@ -69,5 +72,25 @@ public class ProductManagement {
 //    Option3: Sắp xếp sản phẩm theo interest
     public static void SortProduct(ArrayList<Product> productArray){
     Collections.sort(productArray);
+    }
+    public static void DeleteProduct(ArrayList<Product> productArray){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào mã bạn muốn xóa ");
+        int deleletItem= input.nextInt();
+        for (int i = 0; i < productArray.size(); i++) {
+            if (deleletItem == productArray.get(i).getProductId()) {
+                productArray.remove(i);
+            }
+        }
+    }
+    public static void SearchProduct(ArrayList<Product> productArray){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Nhập vào tên sản phẩm bạn muốn tìm kiếm ");
+        String itemsSearch= input.nextLine();
+        for (int i = 0; i < productArray.size(); i++) {
+            if (productArray.get(i).getProductName().equalsIgnoreCase(itemsSearch)) {
+                productArray.get(i).displayData();
+            }
+        }
     }
 }
